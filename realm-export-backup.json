@@ -2088,6 +2088,20 @@
   ],
   "authenticatorConfig": [
     {
+      "id": "f8ba8659-e99b-4918-b9de-734b40903c01",
+      "alias": "Custom first broker login create unique user config",
+      "config": {
+        "require.password.update.after.registration": "false"
+      }
+    },
+    {
+      "id": "57e3cb7b-25c2-439d-a543-8eae73612d97",
+      "alias": "Custom first broker login review profile config",
+      "config": {
+        "update.profile.on.first.login": "missing"
+      }
+    },
+    {
       "id": "f2d4c273-3940-4a13-a309-db76d7b9bdb3",
       "alias": "create unique user config",
       "config": {
