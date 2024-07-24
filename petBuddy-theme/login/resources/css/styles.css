@@ -3,9 +3,14 @@
 :root {
   font-size: 14px;
   --pf-global--BackgroundColor--light-100: #fff;
-  --pf-c-button--m-primary--BackgroundColor: #fff;
   --pf-global--primary-color--100: #00A8E8;
   --pf-global--primary-color--200: #007EA7;
+}
+
+.pf-c-input-group {
+  background-color: #007EA7;
+  display: flex;
+  align-items: center;
 }
 
 .login-pf {
@@ -13,7 +18,7 @@
   height: 100%;
   width: 100%;
 }
-
+card-pf p.pf-c-input-group
 .login-pf body {
   background: #e4e4e4;
   font-family: Roboto;
@@ -31,6 +36,7 @@
   justify-content: center;
   align-items: stretch;
   height: 100%;
+  background-color: #e4e4e4;
 }
 
 .login-pf-page-header {
@@ -53,6 +59,18 @@
   justify-content: center;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
+  background-color: #007EA7;
+}
+
+.login-pf-page .card-pf p {
+  color: #e4e4e4;
+}
+
+.pf-c-button.pf-m-control {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-pf-page .login-pf-header h1 {
@@ -61,6 +79,7 @@
   font-weight: 700;
   line-height: 2rem;
   text-align: left;
+  color: #ffffff;
 }
 
 input[type="text"],
@@ -97,7 +116,7 @@ input[type="submit"]:hover {
 }
 
 .pf-c-form__label {
-  font-weight: bolder;
+  color: #ffffff;
 }
 
 .pf-c-button,
@@ -107,7 +126,7 @@ input[type="submit"]:hover {
 }
 
 .pf-m-primary:hover {
-  background-color: #007EA7 !important;
+  background-color: #8fe1ff !important;
   color: #36383a !important;
 }
 
@@ -115,11 +134,23 @@ input[type="submit"]:hover {
   font-size: 1rem;
   line-height: 1.4rem;
   padding: 16px 0 16px 0;
-  color: #3b97d5;
+  color: #ffffff;
 }
 
 .pf-m-error {
   color: #ff0000 !important;
+}
+
+.login-pf-signup {
+  color: #d3d3d3;
+}
+
+.login-pf-signup a, h4 {
+  color: #ffffff;
+}
+
+a:-webkit-any-link {
+  color: #ffffff;
 }
 
 @media (max-width: 750px) {
