@@ -36,7 +36,7 @@ card-pf p.pf-c-input-group
   justify-content: center;
   align-items: stretch;
   height: 100%;
-  background-color: #e4e4e4;
+  background-color: #E1F7FF;
 }
 
 .login-pf-page-header {
@@ -138,7 +138,7 @@ input[type="submit"]:hover {
 }
 
 .pf-m-error {
-  color: #ff0000 !important;
+  color: #ffa1a1 !important;
 }
 
 .login-pf-signup {
