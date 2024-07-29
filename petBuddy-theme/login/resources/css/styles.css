@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  font-size: 14px;
+  --pf-global--BackgroundColor--light-100: #fff;
+  --pf-global--primary-color--100: #00A8E8;
+  --pf-global--primary-color--200: #007EA7;
+}
+
+.pf-c-input-group {
+  background-color: #007EA7;
+  display: flex;
+  align-items: center;
+}
+
+.login-pf {
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+card-pf p.pf-c-input-group
+.login-pf body {
+  background: #e4e4e4;
+  font-family: Roboto;
+  height: 100%;
+  margin: 0;
+}
+
+#kc-header-wrapper {
+  display: none;
+}
+
+.login-pf-page {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+  background-color: #E1F7FF;
+}
+
+.login-pf-page-header {
+  height: 100%;
+  flex: 0 0 35em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  background-color: #fff;
+}
+
+.card-pf {
+  border-top: 0;
+  margin: 0;
+  flex: 0 0 35em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #007EA7;
+}
+
+.login-pf-page .card-pf p {
+  color: #e4e4e4;
+}
+
+.pf-c-button.pf-m-control {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-pf-page .login-pf-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: left;
+  color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  height: 48px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#kc-form-options .checkbox {
+  padding: 0;
+  margin: 0;
+}
+
+.pf-c-form__label {
+  color: #ffffff;
+}
+
+.pf-c-button,
+.pf-c-button.pf-m-primary {
+  color: var(--pf-c-button--m-primary--Color);
+  background-color: var(--pf-c-button--m-primary--BackgroundColor);
+}
+
+.pf-m-primary:hover {
+  background-color: #8fe1ff !important;
+  color: #36383a !important;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  padding: 16px 0 16px 0;
+  color: #ffffff;
+}
+
+.pf-m-error {
+  color: #ffa1a1 !important;
+}
+
+.login-pf-signup {
+  color: #d3d3d3;
+}
+
+.login-pf-signup a, h4 {
+  color: #ffffff;
+}
+
+a:-webkit-any-link {
+  color: #ffffff;
+}
+
+@media (max-width: 750px) {
+  .login-pf-page-header,
+  .login-pf body {
+    background-color: #fff;
+  }
+  .login-pf-page {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .login-pf-page-header {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    flex: 0 0 15em;
+  }
+  .card-pf {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
