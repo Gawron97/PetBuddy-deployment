@@ -41,7 +41,7 @@
     <div id="kc-header" class="${properties.kcHeaderClass!}">
 
         <div class="logo">
-            <img alt="Czetsuya Tech" src="${url.resourcesPath}/img/logo.png" width="420"/>
+            <img alt="PetBuddy logo" src="${url.resourcesPath}/img/logo.png" width="420"/>
         </div>
 
         <div id="kc-header-wrapper"
