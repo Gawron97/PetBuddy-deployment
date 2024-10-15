@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:23.0.0
+FROM quay.io/keycloak/keycloak:23.0.2
 
 COPY realm-export.json /opt/keycloak/data/import/
 COPY petBuddy-theme /opt/keycloak/themes/petBuddy-theme
