@@ -3,12 +3,12 @@
 :root {
   font-size: 14px;
   --pf-global--BackgroundColor--light-100: #fff;
-  --pf-global--primary-color--100: #00A8E8;
-  --pf-global--primary-color--200: #007EA7;
+  --pf-global--primary-color--100: #007ea7;
+  --pf-global--primary-color--200: #003459;
 }
 
 .pf-c-input-group {
-  background-color: #007EA7;
+  background-color: #003459;
   display: flex;
   align-items: center;
 }
@@ -59,7 +59,7 @@ card-pf p.pf-c-input-group
   justify-content: center;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  background-color: #007EA7;
+  background-color: #003459;
 }
 
 .login-pf-page .card-pf p {
@@ -126,7 +126,7 @@ input[type="submit"]:hover {
 }
 
 .pf-m-primary:hover {
-  background-color: #8fe1ff !important;
+  background-color: #00a8e8 !important;
   color: #36383a !important;
 }
 
@@ -171,4 +171,79 @@ a:-webkit-any-link {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
+}
+
+.locale-container {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  margin: 10px;
+}
+
+.current-locale {
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+}
+
+.current-locale-link {
+  text-decoration: none;
+  background-color: #007ea7 !important;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.locale-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.locale-dropdown.hidden {
+  display: none;
+}
+
+.locale-list {
+  list-style: none;
+  background-color: #007ea7;
+  margin: 0;
+  padding: 0;
+}
+
+.locale-item-link {
+  font-size: 14px;
+  width: 100%;
+}
+
+.locale-list-item {
+  list-style: none;
+  margin: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.locale-item-link {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.locale-list-item:hover {
+  background-color: #00a8e8;
+}
+
+.current-locale-btn {
+  color: white;
+  background-color: #007ea7;
+  border: none;
+  border-radius: 5px;
 }
