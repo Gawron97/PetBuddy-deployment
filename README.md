@@ -71,11 +71,11 @@ DB_PASSWORD=
 - **`DB_PASSWORD`**  
   Hasło do konta użytkownika bazy danych. Używane przez aplikację do łączenia się z bazą danych PostgreSQL.
 
-## 1.2. Uruchamianie aplikacji za pomocą Docker Compose
+## 1.3. Uruchamianie aplikacji za pomocą Docker Compose
 
 Po dodaniu pliku `.env` można użyć poniższych komend do uruchomienia aplikacji.
 
-### 1.2.1. Pobranie najnowszych obrazów (opcjonalnie)
+### 1.3.1. Pobranie najnowszych obrazów (opcjonalnie)
 
 Jeśli chcesz pobrać najnowsze obrazy kontenerów (np. w przypadku, gdy obrazy zostały zaktualizowane w repozytorium), użyj polecenia `docker-compose pull`. Jest to opcjonalny krok, ponieważ Docker automatycznie pobierze obrazy, jeśli nie są one jeszcze dostępne lokalnie.
 
@@ -83,24 +83,22 @@ Jeśli chcesz pobrać najnowsze obrazy kontenerów (np. w przypadku, gdy obrazy 
 docker-compose pull
 ```
 
-### 1.2.2. Uruchomienie aplikacji
+### 1.3.2. Uruchomienie aplikacji
 ```bash
 docker-compose up
 ```
 
-### 1.2.3. Uruchomienie aplikacji w tle
+### 1.3.3. Uruchomienie aplikacji w tle
 ```bash
 docker-compose up -d
 ```
 
-
-### 1.2.4. Zatrzymanie aplikacji
+### 1.3.4. Zatrzymanie aplikacji
 ```bash
 docker-compose down -d
 ```
 
 # 2. Konfiguracja Keycloak
-
 ## 2.1. Podłączenie adresu e-mail do Keycloak (wymagane)
 Podanie hasła: hasło dla keycloaka do podłączenia do maila
 Potrzebne do wszelkich interakcji, które skutkują wysłaniem maila przez keycloaka.
