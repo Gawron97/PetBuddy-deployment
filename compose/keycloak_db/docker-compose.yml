@@ -1,0 +1,58 @@
+services:
+  database:
+    image: postgres:15.6
+    container_name: keycloak_db-petbuddy-postgres
+    volumes:
+      - keycloak_db-volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_DB=petbuddy
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_web
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PG_ADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PG_ADMIN_PASSWORD}
+      - PGADMIN_LISTEN_PORT=8001
+    ports:
+      - "8001:8001"
+    depends_on:
+      - database
+
+  keycloak:
+    build: ../../src/keycloak
+    image: petbuddyzpi/keycloak:latest
+    container_name: keycloak_db-petbuddy-keycloak
+    environment:
+      - KEYCLOAK_ADMIN=${KEYCLOAK_USERNAME}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
+      - KC_DB=${DB_USERNAME}
+      - KC_DB_URL=${JDBC_URL}
+      - KC_DB_USERNAME=${DB_USERNAME}      
+      - KC_DB_PASSWORD=${DB_PASSWORD}
+      - KC_DB_SCHEMA=keycloak
+
+      - KC_HOSTNAME=localhost
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+
+      - KC_LOG_LEVEL=info
+      - KC_METRICS_ENABLED=true
+      - KC_HEALTH_ENABLED=true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  keycloak_db-volume:
+    driver: local
