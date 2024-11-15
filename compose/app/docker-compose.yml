@@ -1,0 +1,71 @@
+services:
+  database:
+    image: postgres:15.6
+    container_name: app-petbuddy-db_postgres
+    volumes:
+      - app-volume:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_DB=petbuddy
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+
+  keycloak:
+    build: ../../src/keycloak
+    image: petbuddyzpi/keycloak:latest
+    container_name: app-petbuddy-keycloak
+    environment:
+      - KEYCLOAK_ADMIN=${KEYCLOAK_USERNAME}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
+      - KC_DB=postgres
+      - KC_DB_URL=${JDBC_URL}
+      - KC_DB_USERNAME=${DB_USERNAME}      
+      - KC_DB_PASSWORD=${DB_PASSWORD}
+      - KC_DB_SCHEMA=keycloak
+
+      - KC_HOSTNAME=localhost
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+
+      - KC_LOG_LEVEL=info
+      - KC_METRICS_ENABLED=true
+      - KC_HEALTH_ENABLED=true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+
+  backend:
+    image: petbuddyzpi/petbuddy-backend:latest
+    container_name: app-petbuddy-backend
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - DB_URL=${JDBC_URL}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=${DB_USERNAME}
+      - FIREBASE_PHOTO_DIRECTORY=${FIREBASE_PHOTO_DIRECTORY}
+      - FIREBASE_APPLICATION_CREDENTIALS=${FIREBASE_APPLICATION_CREDENTIALS}
+      - OPENCAGE_API_KEY=${OPENCAGE_API_KEY}
+    depends_on:
+      - keycloak
+
+  frontend:
+    image: petbuddyzpi/petbuddy-frontend:latest
+    container_name: app-petbuddy-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  app-volume:
+    driver: local
