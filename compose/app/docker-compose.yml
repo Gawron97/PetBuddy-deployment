@@ -19,7 +19,7 @@ services:
     environment:
       - KEYCLOAK_ADMIN=${KEYCLOAK_USERNAME}
       - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
-      - KC_DB=postgres
+      - KC_DB_USERNAME=${DB_USERNAME}      
       - KC_DB_URL=${JDBC_URL}
       - KC_DB_USERNAME=${DB_USERNAME}      
       - KC_DB_PASSWORD=${DB_PASSWORD}
