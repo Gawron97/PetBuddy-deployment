@@ -50,18 +50,20 @@
     <div class="${properties.kcFormCardClass!}">
         <header class="${properties.kcFormHeaderClass!}">
             <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
-                <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
-                    <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
-                        <div id="kc-locale-dropdown" class="${properties.kcLocaleDropDownClass!}">
-                            <a href="#" id="kc-current-locale-link">${locale.current}</a>
-                            <ul class="${properties.kcLocaleListClass!}">
-                                <#list locale.supported as l>
-                                    <li class="${properties.kcLocaleListItemClass!}">
-                                        <a class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
-                                    </li>
-                                </#list>
-                            </ul>
-                        </div>
+                <div id="kc-locale" class="locale-container">
+                    <button id="kc-current-locale-btn" class="current-locale-btn">
+                        ${locale.current}
+                    </button>
+                    <div id="kc-locale-dropdown" class="locale-dropdown hidden">
+                        <ul class="locale-list">
+                            <#list locale.supported as l>
+                                <li class="locale-list-item">
+                                    <a class="locale-item-link" href="${l.url}">
+                                        <span>${l.label}</span>
+                                    </a>
+                                </li>
+                            </#list>
+                        </ul>
                     </div>
                 </div>
             </#if>
@@ -153,5 +155,24 @@
     </div>
   </div>
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const localeButton = document.getElementById('kc-current-locale-btn');
+      const dropdown = document.getElementById('kc-locale-dropdown');
+
+      // Obsługa kliknięcia w przycisk
+      localeButton.addEventListener('click', function (event) {
+          event.preventDefault();
+          dropdown.classList.toggle('hidden');
+      });
+
+      // Zamknij dropdown, gdy kliknięto poza nim
+      document.addEventListener('click', function (event) {
+          if (!localeButton.contains(event.target) && !dropdown.contains(event.target)) {
+              dropdown.classList.add('hidden');
+          }
+      });
+  });
+</script>
 </html>
 </#macro>

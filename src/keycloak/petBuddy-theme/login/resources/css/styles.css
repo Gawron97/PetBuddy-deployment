@@ -3,12 +3,12 @@
 :root {
   font-size: 14px;
   --pf-global--BackgroundColor--light-100: #fff;
-  --pf-global--primary-color--100: #00A8E8;
-  --pf-global--primary-color--200: #007EA7;
+  --pf-global--primary-color--100: #007ea7;
+  --pf-global--primary-color--200: #003459;
 }
 
 .pf-c-input-group {
-  background-color: #007EA7;
+  background-color: #003459;
   display: flex;
   align-items: center;
 }
@@ -18,6 +18,7 @@
   height: 100%;
   width: 100%;
 }
+
 card-pf p.pf-c-input-group
 .login-pf body {
   background: #e4e4e4;
@@ -36,12 +37,12 @@ card-pf p.pf-c-input-group
   justify-content: center;
   align-items: stretch;
   height: 100%;
+  min-height: max-content;
   background-color: #E1F7FF;
 }
 
 .login-pf-page-header {
-  height: 100%;
-  flex: 0 0 35em;
+  height: 720px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -51,15 +52,16 @@ card-pf p.pf-c-input-group
 }
 
 .card-pf {
+  height: 720px;
+  max-width: 500px;
   border-top: 0;
   margin: 0;
-  flex: 0 0 35em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
-  background-color: #007EA7;
+  background-color: #003459;
 }
 
 .login-pf-page .card-pf p {
@@ -126,7 +128,7 @@ input[type="submit"]:hover {
 }
 
 .pf-m-primary:hover {
-  background-color: #8fe1ff !important;
+  background-color: #00a8e8 !important;
   color: #36383a !important;
 }
 
@@ -153,22 +155,115 @@ a:-webkit-any-link {
   color: #ffffff;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 768px) {
   .login-pf-page-header,
   .login-pf body {
     background-color: #fff;
   }
+
   .login-pf-page {
     flex-direction: column;
     justify-content: center;
   }
+
   .login-pf-page-header {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    margin-bottom: 0px !important;
+    border-radius: 25px 25px 0 0;
     flex: 0 0 15em;
   }
+
   .card-pf {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    max-width: 100%;
+    border-radius: 0 0 25px 25px;
   }
+}
+
+@media (max-width: 480px) {
+  .login-pf-page {
+    padding: 10px;
+  }
+}
+
+.locale-container {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  margin: 10px;
+}
+
+.current-locale {
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+}
+
+.current-locale-link {
+  text-decoration: none;
+  background-color: #007ea7 !important;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.locale-dropdown {
+  position: absolute;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.locale-dropdown.hidden {
+  display: none;
+}
+
+.locale-list {
+  list-style: none;
+  background-color: #007ea7;
+  margin: 0;
+  padding: 0;
+}
+
+.locale-item-link {
+  font-size: 14px;
+  width: 100%;
+}
+
+.locale-list-item {
+  list-style: none;
+  margin: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.locale-item-link {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.locale-list-item:hover {
+  background-color: #00a8e8;
+}
+
+.current-locale-btn {
+  color: white;
+  background-color: #007ea7;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  min-width: 80px;
+}
+
+.current-locale-btn::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
 }
