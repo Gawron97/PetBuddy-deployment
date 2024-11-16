@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="${url.resourcesPath}/img/logo.svg">
 
     <#if properties.meta?has_content>
         <#list properties.meta?split(' ') as meta>
@@ -41,7 +42,7 @@
     <div id="kc-header" class="${properties.kcHeaderClass!}">
 
         <div class="logo">
-            <img alt="PetBuddy logo" src="${url.resourcesPath}/img/logo.png" width="420"/>
+            <img alt="PetBuddy logo" src="${url.resourcesPath}/img/logo.svg" width="420"/>
         </div>
 
         <div id="kc-header-wrapper"
