@@ -28,6 +28,8 @@ DB_USERNAME=postgres
 DB_PASSWORD=
 KEYCLOAK_USERNAME=
 KEYCLOAK_PASSWORD=
+PG_ADMIN_EMAIL=
+PG_ADMIN_PASSWORD=
 ```
 
 
@@ -41,6 +43,8 @@ DB_USERNAME=postgres
 DB_PASSWORD=
 KEYCLOAK_USERNAME=
 KEYCLOAK_PASSWORD=
+PG_ADMIN_EMAIL=
+PG_ADMIN_PASSWORD=
 ```
 
 ### 1.2.3 Opis zmiennych
@@ -70,6 +74,12 @@ KEYCLOAK_PASSWORD=
 
 - **`DB_PASSWORD`**  
   Hasło do konta użytkownika bazy danych. Używane przez aplikację do łączenia się z bazą danych PostgreSQL.
+
+- **`PG_ADMIN_EMAIL`**  
+  Adres email do pgAdmin
+
+- **`DB_PASSWORD`**  
+  Hasło do pgAdmin
 
 ## 1.3. Uruchamianie aplikacji za pomocą Docker Compose
 
