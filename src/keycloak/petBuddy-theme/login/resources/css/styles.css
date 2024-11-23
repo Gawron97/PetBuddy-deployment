@@ -43,6 +43,7 @@ card-pf p.pf-c-input-group
 
 .login-pf-page-header {
   height: 720px;
+  min-width: 320px; 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -167,6 +168,7 @@ a:-webkit-any-link {
   }
 
   .login-pf-page-header {
+    min-width: unset;
     margin-bottom: 0px !important;
     border-radius: 25px 25px 0 0;
     flex: 0 0 15em;
@@ -174,6 +176,7 @@ a:-webkit-any-link {
 
   .card-pf {
     max-width: 100%;
+    height: max-content;
     border-radius: 0 0 25px 25px;
   }
 }
@@ -266,4 +269,12 @@ a:-webkit-any-link {
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+#kc-terms-text {
+  color: white;
+}
+
+#kc-accept{
+  margin-top: 20px;
 }
