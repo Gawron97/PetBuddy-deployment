@@ -278,3 +278,9 @@ a:-webkit-any-link {
 #kc-accept{
   margin-top: 20px;
 }
+
+.btn-default {
+  background-image: none !important;
+  margin-top: 10px;
+
+}
