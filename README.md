@@ -1,18 +1,54 @@
-﻿# 1. Uruchamianie PetBuddy
+﻿# PetBuddy Deployment
 
-## 1.1. Pliki konfiguracyjne
-Repozytorium posiada dwie aplikacje:
+Welcome to the **PetBuddy Deployment**, a utilities repository with files and hints for launching the PetBuddy app, that consists of these repositories:
+- [PetBuddy-Backend](https://github.com/Gawron97/petBuddy-backend)
+- [PetBuddy-Frontend](https://github.com/Daarkosss/petBuddy-frontend)
 
-- **Folder `compose/app`** (backend, frontend, baza danych, Keycloak)
-- **Folder `compose/keycloak_db`** (Keycloak i baza danych)
+The repository contains the docker-compose.yml files for launching either the whole PetBuddy app or just the dependencies for PetBuddy-Backend.
+---
 
-W zależności od wyboru aplikacji do uruchomienia, następne kroki należy wykonać w ramach wybranego folderu.
+## Table of Contents
+1. [Launching the Dependencies for PetBuddy-Backend](#launching-the-dependencies-for-petbuddy-backend)
+2. [Launching the Whole PetBuddy App](#launching-the-whole-petbuddy-app)
+3. [Variable Descriptions](#variable-descriptions)
+4. [Configuring Keycloak](#configuring-keycloak)
 
-## 1.2. Przygotowanie środowiska
+---
+## Launching the dependencies for PetBuddy-Backend
 
-Aby poprawnie uruchomić aplikację, należy przygotować plik konfiguracyjny `.env` w odpowiednich folderach, które zawierają konfigurację Docker Compose dla różnych części aplikacji. W szczególności:
+### Preparing the .env file
 
-### 1.2.1. .env dla `compose/app`:
+The project requires the following environment variables to be set in .env file:
+```yml
+# Public variables
+JDBC_URL=jdbc:postgresql://database:5432/petbuddy
+
+# App credentials
+DB_USERNAME=postgres
+DB_PASSWORD=
+KEYCLOAK_USERNAME=
+KEYCLOAK_PASSWORD=
+PG_ADMIN_EMAIL=
+PG_ADMIN_PASSWORD=
+```
+
+### Place the .env file in the correct directory
+
+```bash
+mv .env ./PetBuddy-deployment/compose/keycloak_db
+```
+
+### Run the docker-compose.yml file
+
+```bash
+docker compose -f ./PetBuddy-deployment/compose/keycloak_db/docker-compose.yml up
+```
+
+## Launching the whole PetBuddy app
+
+### Preparing the .env file
+
+The project requires the following environment variables to be set in .env file:
 ```yml
 # Public variables
 SPRING_PROFILES_ACTIVE=prod
@@ -23,108 +59,81 @@ FIREBASE_PHOTO_DIRECTORY=prod
 OPENCAGE_API_KEY=
 FIREBASE_APPLICATION_CREDENTIALS= 
 
-# App credentials
+# App credentials (can be customized)
 DB_USERNAME=postgres
-DB_PASSWORD=
-KEYCLOAK_USERNAME=
-KEYCLOAK_PASSWORD=
-PG_ADMIN_EMAIL=
-PG_ADMIN_PASSWORD=
+DB_PASSWORD=postgres
+KEYCLOAK_USERNAME=admin
+KEYCLOAK_PASSWORD=admin
+PG_ADMIN_EMAIL=admin
+PG_ADMIN_PASSWORD=admin
 ```
 
+### Place the .env file in the correct directory
 
-### 1.2.2. .env dla `compose/keycloak_db`
-```yml
-# Public variables
-JDBC_URL=jdbc:postgresql://database:5432/petbuddy
-
-# App credentials
-DB_USERNAME=postgres
-DB_PASSWORD=
-KEYCLOAK_USERNAME=
-KEYCLOAK_PASSWORD=
-PG_ADMIN_EMAIL=
-PG_ADMIN_PASSWORD=
+```bash
+mv .env ./PetBuddy-deployment/compose/app
 ```
 
-### 1.2.3 Opis zmiennych
+### Run the docker-compose.yml file
+
+```bash
+docker compose -f ./PetBuddy-deployment/compose/app/docker-compose.yml up
+```
+
+---
+
+### Variable Descriptions
+
 - **`SPRING_PROFILES_ACTIVE`**  
-  Określa profil środowiskowy Spring Boot (np. `prod` dla środowiska produkcyjnego). Wartość `prod` oznacza, że aplikacja działa w trybie produkcyjnym.
+  Specifies the Spring Boot environment profile (e.g., `prod` for the production environment). The value `prod` means that the application runs in production mode.
 
 - **`JDBC_URL`**  
-  URL do bazy danych, której używa aplikacja backendowa. Wartość `jdbc:postgresql://database:5432/petbuddy` wskazuje na bazę danych PostgreSQL, której hostname to `database`, a nazwa bazy to `petbuddy`.
+  The URL for the database used by the backend application. The value `jdbc:postgresql://database:5432/petbuddy` points to a PostgreSQL database with the hostname `database` and the name `petbuddy`.
 
 - **`FIREBASE_PHOTO_DIRECTORY`**  
-  Określa katalog, w którym przechowywane będą zdjęcia użytkowników w Firebase. Wartość `prod` oznacza, że zdjęcia będą przechowywane w folderze o nazwie `prod`.
+  Defines the directory where user photos will be stored in Firebase. The value `prod` indicates that photos will be stored in a folder named `prod`.
 
 - **`OPENCAGE_API_KEY`**  
-  Klucz API do usługi OpenCage, wykorzystywanej do geokodowania (np. konwersji adresów na współrzędne geograficzne). Należy uzyskać klucz API z platformy OpenCage.
+  API key for the OpenCage service, used for geocoding (e.g., converting addresses into geographic coordinates). You need to obtain an API key from the OpenCage platform.
 
 - **`FIREBASE_APPLICATION_CREDENTIALS`**  
-  Zawartość pliku JSON z poświadczeniami aplikacji Firebase, które umożliwiają backendowi dostęp do usług Firebase. Należy wkleić pełną zawartość pliku JSON, który zawiera klucze i poświadczenia potrzebne do integracji z Firebase.
+  The content of a JSON file with Firebase application credentials, enabling the backend to access Firebase services. Paste the full content of the JSON file, which contains keys and credentials needed for Firebase integration.
 
 - **`KEYCLOAK_USERNAME`**  
-  Nazwa użytkownika (administrator) w systemie Keycloak, który jest odpowiedzialny za zarządzanie tożsamościami użytkowników w aplikacji.
+  The username (administrator) in the Keycloak system, responsible for managing user identities within the application.
 
 - **`KEYCLOAK_PASSWORD`**  
-  Hasło do konta administratora Keycloak. To hasło umożliwia połączenie z Keycloak w celu zarządzania aplikacjami i użytkownikami.
+  The password for the Keycloak admin account. This password allows connection to Keycloak to manage applications and users.
 
 - **`DB_USERNAME`**  
-  Nazwa użytkownika bazy danych, której używa aplikacja. Należy skonfigurować odpowiedniego użytkownika w bazie danych PostgreSQL.
+  The username for the database used by the application. You must configure the appropriate user in the PostgreSQL database.
 
 - **`DB_PASSWORD`**  
-  Hasło do konta użytkownika bazy danych. Używane przez aplikację do łączenia się z bazą danych PostgreSQL.
+  The password for the database user account. Used by the application to connect to the PostgreSQL database.
 
 - **`PG_ADMIN_EMAIL`**  
-  Adres email do pgAdmin
+  The email address for pgAdmin.
 
-- **`DB_PASSWORD`**  
-  Hasło do pgAdmin
+- **`PG_ADMIN_PASSWORD`**  
+  The password for pgAdmin.
 
-## 1.3. Uruchamianie aplikacji za pomocą Docker Compose
+---
 
-Po dodaniu pliku `.env` można użyć poniższych komend do uruchomienia aplikacji.
+## Configuring Keycloak
 
-### 1.3.1. Pobranie najnowszych obrazów (opcjonalnie)
+### Connecting an Email Address to Keycloak (Required)
+You need to provide a password for Keycloak to connect to an email account. This is necessary for any interactions that involve sending emails via Keycloak.
 
-Jeśli chcesz pobrać najnowsze obrazy kontenerów (np. w przypadku, gdy obrazy zostały zaktualizowane w repozytorium), użyj polecenia `docker-compose pull`. Jest to opcjonalny krok, ponieważ Docker automatycznie pobierze obrazy, jeśli nie są one jeszcze dostępne lokalnie.
+1. Select the appropriate realm.
+2. Go to **Realm Settings**.
+3. Navigate to the **Email** tab.
+4. Uncheck and then recheck `Authentication Enabled` to display the fields for configuration.
+5. Paste the email connection password for Keycloak into the **Password** field.
 
-```bash
-docker-compose pull
-```
+### Login via Google configuration (Optional)
+After starting the application, complete the configuration by adding the required credentials for Google services. This is necessary for login/registration via Google.
 
-### 1.3.2. Uruchomienie aplikacji
-```bash
-docker-compose up
-```
-
-### 1.3.3. Uruchomienie aplikacji w tle
-```bash
-docker-compose up -d
-```
-
-### 1.3.4. Zatrzymanie aplikacji
-```bash
-docker-compose down -d
-```
-
-# 2. Konfiguracja Keycloak
-## 2.1. Podłączenie adresu e-mail do Keycloak (wymagane)
-Podanie hasła: hasło dla keycloaka do podłączenia do maila
-Potrzebne do wszelkich interakcji, które skutkują wysłaniem maila przez keycloaka.
-
-1. Wybranie odpowiedniego realma.
-2. Realm settings.
-3. Email.
-4. Odznaczyc i zaznaczyc `Authentication enabled`, zeby pokazaly sie pola do uzupelnienia.
-5. Do password wkleić zawartość: hasło dla keycloaka do podłączenia do maila.
-
-## 2.2. Logowanie z Google (opcjonalne)
-Po odpaleniu trzeba uzupełnić konfiguracje o hasła do usług:
-Podanie hasła: `client_secret_google`.
-potrzebne do logowania/rejestrowania za pośrednictewm googla.
-
-1. wybranie odpowiedniego realma.
-2. Identity providers.
-3. google.
-4. W klient secret wkleić zawartość: `client_secret_google`.
+1. Select the appropriate realm.
+2. Go to **Identity Providers**.
+3. Choose **Google**.
+4. Paste the content of `client_secret_google` into the **Client Secret** field.
